@@ -141,7 +141,7 @@ $ git clone https://github.com/Micael-SalmonSa/OCP6/
 
 <h3>Activer l'environnement virtuel </h3>
 
-$ cd OCP7
+$ cd OCP6
 $ python3 -m venv venvOCP6 
 $ source env/bin/activate
 
