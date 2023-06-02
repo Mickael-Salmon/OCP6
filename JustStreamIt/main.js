@@ -88,7 +88,7 @@ function fetchModalData(id) {
 }
 
 // Récupère les films d'une catégorie spécifique
-async function fetchCategories(name, skip, total = 7) {
+async function fetchCategories(name, skip, total = 18) {
 // Récupère les films en fonction du genre et du classement IMDb
 const results = await fetch(mainUrl + "?sort_by=-imdb_score&genre=" + name);
 
@@ -233,9 +233,9 @@ section.appendChild(carousel);
 // Initialise les carrousels et récupère le meilleur film au chargement de la page
 window.addEventListener('load', async () => {
 await buildCarousel("Best-rated", "best", 1);
-await buildCarousel("Horror", "horror");
-await buildCarousel("History", "history");
 await buildCarousel("Romance", "romance");
+await buildCarousel("Sci-Fi", "sci-fi");
+await buildCarousel("Mystery", "mystery");
 
 await fetchBestMovie();
 });
