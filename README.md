@@ -96,59 +96,31 @@ Code source complet du projet (HTML, CSS, JS).
 
 ```
 ├── HTML
-│   ├── 
+│   ├── Index.html
 ├── CSS
-│   ├── 
+│   ├── JustStreamIT/style.css
 └── JS
-    ├── 
-    ├── 
-    ├── 
+    ├── JustStreamIT/main.js
+     
+    
 
 ```
 
 
 <h2> Installation et démarrage du projet</h2> 
-<h3>Windows  </h3> 
 
-Depuis un terminal , se déplacer dans le dossier applicatif souhaité :
+<h3>Démarrer le server en local </h3> 
+L'utilisation de l'API RestFull OCMovies-API est nécessaire pour le bon fonctionnement de l'application.</br>
+Se référer à la documentation pour démarrer le server en local.</br>
+[Lien vers la documentation](https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR)
+
+
 
 <h3>Récupération du projet</h3> 
 
 $ git clone https://github.com/Mickael-Salmon/OCP6/
 
-<h3>Activer l'environnement virtuel </h3> 
-
-$ cd OCP6 
-$ python -m venv venvOCP6 
-$ ~env\scripts\activate
-
-<h3>Installer les paquets requis </h3>
-
-$ pip install -r requirements.txt
-
-<h3>Lancer le programme</h3>
-
-$ python main.py
-
-<h2>MacOS et Linux : </h2>
-
-Depuis un terminal, se déplacer dans dossier souhaité. 
-
-<h3>Récupération du projet</h3>
-
-$ git clone https://github.com/Micael-SalmonSa/OCP6/
-
-
-<h3>Activer l'environnement virtuel </h3>
-
-$ cd OCP6
-$ python3 -m venv venvOCP6 
-$ source env/bin/activate
-
-<h3>Installer les paquets requis </h3>
-
-$ pip install -r requirements.txt
-
 <h3>Lancer le programme </h3>
 
+Depuis un terminal , se déplacer dans le dossier applicatif souhaité :</br>
 $ Ouvrir Index.html dans un navigateur web
