@@ -1,88 +1,101 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <link href="JustStreamIt/images/favicon.png" rel="icon"/>
-  <link href="JustStreamIt/style.css" rel="stylesheet"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8"> <!-- Définition de l'encodage des caractères du document en UTF-8 -->
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"> <!-- Rendre le site web responsive -->
+  <link href="JustStreamIt/images/favicon.png" rel="icon" /> <!-- Favicon du site -->
+  <link href="JustStreamIt/style.css" rel="stylesheet" /> <!-- Lien vers le fichier CSS du site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Préconnexion à la source de la police -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Préconnexion à la source de la police -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <!-- Importation de la police Montserrat depuis Google Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" rel="stylesheet">
-  <title>JustStreamIt</title>
-</head>
+  <!-- Importation des icônes Bootstrap -->
+  <title>JustStreamIt</title> <!-- Titre du document affiché dans l'onglet du navigateur -->
+</head> <!-- Fermeture de l'en-tête du document -->
 
-<body>
-<header class="header">
-  <div class="header-logo">
-    <a href="index.html"><img alt="JustStreamIt logo" src="JustStreamIt/images/logo_small.png"></a>
-  </div>
-  <nav class="header_menu">
-    <ul class="nav_bar">
-      <li class="nav"><a href="index.html">Home</a></li>
-      <li class="nav"><a href="#categories">Categories</a></li>
-    </ul>
-    <form class="search-form" onsubmit="event.preventDefault(); performSearch();">
-      <input type="text" id="search-input" placeholder="Search..." />
-      <button type="submit"><i class="bi bi-search"></i></button>
-    </form>
-    
-  </nav>
-</header>
+<body> <!-- Ouverture du corps du document -->
 
-<section class="best" id="best-movie">
-  <div class="best-cover" id="top0">
-    <img alt="movie cover" src="JustStreamIt/images/test.jpg">
-  </div>
-  <div class="best_movie">
-    <h1 class="best-movie-title" id="top-title"></h1>
-  </div>
-  <div class="buttons">
-    <button class="button"><i class="bi bi-play-fill"></i> Play</button>
-    <button aria-label="open modal" class="button">More info</button>
-  </div>
-  <div class="best-movie-description">
-    <p class="best-desc" id="top-desc"></p>
-  </div>
-</section>
+  <header class="header"> <!-- Ouverture de l'en-tête de la page -->
+    <div class="header-logo"> <!-- Ouverture du div contenant le logo -->
+      <a href="index.html"><img alt="JustStreamIt logo" src="JustStreamIt/images/logo_small.png"></a>
+      <!-- Logo avec un lien vers la page d'accueil -->
+    </div> <!-- Fermeture du div contenant le logo -->
 
-<div class="carousels"></div>
+    <!-- A partir d'ici, déclaration du menu de navigation -->
+    <nav class="header_menu">
+      <ul class="nav_bar">
+        <li class="nav"><a href="index.html">Home</a></li> <!-- Lien vers la page d'accueil -->
+        <li class="nav"><a href="#categories">Categories</a></li> <!-- Lien vers la section Categories -->
+      </ul>
 
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <button aria-label="close modal" class="close">&times;</button>
-    <div class="modal-cover-image">
-      <img alt="movie cover" id="modal-cover" src="JustStreamIt/images/test.jpg">
+      <!-- Formulaire de recherche, qui empêche le rechargement de la page et appelle une fonction JavaScript pour effectuer la recherche -->
+      <form class="search-form" onsubmit="event.preventDefault(); performSearch();">
+        <input type="text" id="search-input" placeholder="Search..." />
+        <!-- Champ de texte pour entrer les termes de recherche -->
+        <button type="submit"><i class="bi bi-search"></i></button> <!-- Bouton de soumission du formulaire -->
+      </form>
+    </nav>
+
+  </header>
+
+  <!-- A partir d'ici, déclaration de la section présentant le meilleur film -->
+  <section class="best" id="best-movie">
+    <!-- Déclaration de la div contenant la couverture du meilleur film -->
+    <div class="best-cover" id="top0">
+      <img alt="movie cover" src="JustStreamIt/images/test.jpg"> <!-- Image de la couverture du meilleur film -->
     </div>
-    <div class="modal-movie-info">
-      <header class="modal_header">
-        <h3 class="title" id="modal-title"></h3>
-        <button class="modal-button"><i class="bi bi-play-fill"></i> Play</button>
-      </header>
-      <div class="metadata">
-        <p id="modal-year"></p> • <p id="modal-rating"></p> • <p id="modal-duration"></p><br>
-        <p class="genres" id="modal-genres"></p><br>
-        <strong>IMDb: </strong>
-        <p id="modal-imdb"></p><br><br>
+    <!-- Déclaration de la div contenant le titre du meilleur film -->
+    <div class="best_movie">
+      <h1 class="best-movie-title" id="top-title"></h1> <!-- Titre du meilleur film -->
+    </div>
+    <!-- Déclaration de la div contenant les boutons pour le meilleur film -->
+    <div class="buttons">
+      <button class="button"><i class="bi bi-play-fill"></i> Play</button> <!-- Bouton de lecture -->
+      <button aria-label="open modal" class="button">More info</button>
+      <!-- Bouton pour ouvrir la fenêtre modale avec plus d'informations -->
+    </div>
+    <!-- Déclaration de la div contenant la description du meilleur film -->
+    <div class="best-movie-description">
+      <p class="best-desc" id="top-desc"></p> <!-- Description du meilleur film -->
+    </div>
+  </section> <!-- Fermeture de la section présentant le meilleur film -->
+
+  <div class="carousels"></div> <!-- Div qui peut contenir des carrousels de films -->
+
+  <!-- Déclaration de la fenêtre modale qui s'affiche lorsqu'on clique sur "Plus d'infos" -->
+  <div class="modal" id="modal">
+    <div class="modal-content"> <!-- Contenu de la fenêtre modale -->
+      <button aria-label="close modal" class="close">&times;</button> <!-- Bouton pour fermer la fenêtre modale -->
+      <!-- Div contenant l'image de couverture dans la fenêtre modale -->
+      <div class="modal-cover-image">
+        <img alt="movie cover" id="modal-cover" src="JustStreamIt/images/test.jpg"> <!-- Image de la couverture -->
       </div>
-      <div>
-        <strong>Directed by: </strong>
-        <p id="modal-directors"></p><br>
-        <strong>Starring: </strong>
-        <p id="modal-cast"></p><br>
-        <strong>Countries: </strong>
-        <p id="modal-country "></p><br>
-        <strong>Box office: </strong>
-        <p id="modal-box-office"></p><br><br>
-        <strong>Plot summary: </strong><br>
-        <p class="plot" id="modal-desc"></p>
+      <!-- Div contenant les informations sur le film dans la fenêtre modale -->
+      <div class="modal-movie-info">
+        <!-- En-tête de la fenêtre modale -->
+        <header class="modal_header">
+          <h3 class="title" id="modal-title"></h3> <!-- Titre du film -->
+          <button class="modal-button"><i class="bi bi-play-fill"></i> Play</button> <!-- Bouton de lecture -->
+        </header>
+        <!-- Metadonnées du film -->
+        <div class="metadata">
+          <p id="modal-year"></p> <!-- Année de sortie -->
+          <p id="modal-rating"></p> <!-- Note du film -->
+          <p id="modal-duration"></p> <!-- Durée du film -->
+          <p class="genres" id="modal-genres"></p> <!-- Genres du film -->
+          <strong>IMDb: </strong> <!-- Notation IMDb -->
+          <p id="modal-imdb"></p>
+          <!-- Et d'autres informations sur le film... -->
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script src="JustStreamIt/main.js"></script>
+  <script src="JustStreamIt/main.js"></script> <!-- Lien vers le fichier JavaScript qui contient la logique du site -->
 
 </body>
-</html>
 
+</html>

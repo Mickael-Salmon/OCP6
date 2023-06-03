@@ -1,18 +1,62 @@
+// Architecture modulaire : Le code est divisé en plusieurs fonctions pour effectuer des tâches spécifiques.
+// Cela améliore la lisibilité du code, sa maintenance et sa testabilité.
+
+// Utilisation de l'asynchronicité : Les opérations de récupération de données de l'API sont effectuées de manière asynchrone, ce qui signifie que le reste du code peut continuer à s'exécuter pendant que ces opérations sont en cours.
+// Cela permet d'améliorer les performances et l'expérience utilisateur en évitant de bloquer l'exécution du code.
+
+// Manipulation du DOM : Le code utilise des méthodes pour manipuler le Document Object Model (DOM), telles que document.getElementById, document.querySelector et document.createElement.
+// Ces méthodes permettent de créer et de modifier dynamiquement le contenu de la page.
+
+// Gestion des erreurs : Par exemple FetchBestMovie.
+//nous utilisons une instruction try/catch pour attraper les erreurs qui peuvent survenir lors de l'exécution de la fonction.
+// À l'intérieur du bloc try, nous effectuons les requêtes fetch et vérifions si elles ont réussi en utilisant la propriété ok de l'objet Response renvoyé par fetch.
+// Dans le bloc catch, nous traitons l'erreur en la consignant dans la console.
+
+// Gestion des événements : Le code utilise également des gestionnaires d'événements pour interagir avec l'utilisateur, comme lors de l'ouverture d'une modale avec les détails d'un film.
+
+
 // Définit l'URL principale de l'API
 const mainUrl = "http://localhost:8000/api/v1/titles/"
 
 // Récupère et affiche le meilleur film
 async function fetchBestMovie() {
     // Récupère le film avec le meilleur score IMDb
-    const response = await fetch(mainUrl + "?sort_by=-imdb_score");
-    const data = await response.json();
-    const bestMovie = data["results"][0];
-    // Récupère les détails du meilleur film
-    const bestMovieDetails = await fetch(bestMovie["url"]).then(res => res.json());
+    // Récupération des données de l'API : fetch est utilisé pour envoyer une requête GET à l'API.
+    // Il renvoie une promesse qui se résout en un objet Response représentant la réponse à la requête.
+    // Ceci est utilisé pour obtenir le meilleur film, obtenir un film par son ID, et obtenir des films dans une catégorie spécifique.
+    // Par exemple, fetchBestMovie() et fetchModalData(id) récupèrent les données de l'API.
+    try {
+        // Récupère le film avec le meilleur score IMDb
+        const response = await fetch(mainUrl + "?sort_by=-imdb_score");
+        // Analyse de la réponse JSON : response.json() est utilisé pour analyser la réponse en JSON.
+        // Ceci renvoie aussi une promesse qui se résout avec le résultat de l'analyse du texte du corps en JSON
+        // qui est ensuite stocké dans une variable.
+        // Vérifie si la requête a réussi
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    // Affiche les informations du meilleur film
-    displayBestMovie(bestMovie, bestMovieDetails);
+        const data = await response.json();
+        const bestMovie = data["results"][0];
+
+        // Récupère les détails du meilleur film
+        const bestMovieDetailsRes = await fetch(bestMovie["url"]);
+
+        // Vérifie si la requête a réussi
+        if (!bestMovieDetailsRes.ok) {
+            throw new Error(`HTTP error! status: ${bestMovieDetailsRes.status}`);
+        }
+
+        const bestMovieDetails = await bestMovieDetailsRes.json();
+
+        // Affiche les informations du meilleur film
+        displayBestMovie(bestMovie, bestMovieDetails);
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation: ', error);
+        // Vous pouvez également afficher une erreur à l'utilisateur ici
+    }
 }
+
 
 // Affiche le meilleur film dans le DOM
 function displayBestMovie(movie, details) {
@@ -51,6 +95,10 @@ async function openModal(id) {
 // Récupère les données de la modale et les affiche
 function fetchModalData(id) {
     // Récupère les détails du film
+    // Récupération des données de l'API : fetch est utilisé pour envoyer une requête GET à l'API.
+    // Il renvoie une promesse qui se résout en un objet Response représentant la réponse à la requête.
+    // Ceci est utilisé pour obtenir le meilleur film, obtenir un film par son ID, et obtenir des films dans une catégorie spécifique.
+    // Par exemple, fetchBestMovie() et fetchModalData(id) récupèrent les données de l'API.
     fetch(mainUrl + id)
         .then(response => response.json())
         .then(data => {
@@ -89,7 +137,7 @@ function fetchModalData(id) {
 
 // Récupère les films d'une catégorie spécifique
 async function fetchCategories(name, skip, total = 18) {
-// Récupère les films en fonction du genre et du classement IMDb
+// Récupère les films en fonction du genre et du classement IMDb via API
 const results = await fetch(mainUrl + "?sort_by=-imdb_score&genre=" + name);
 
 if (!results.ok)
